@@ -28,6 +28,6 @@
     "**/*.tsx",
     "**/*.cjs",
     "**/*.mjs"
-  ],
+, "src/pages/register.backup", "src/pages/login.backup"  ],
   "exclude": ["node_modules"]
 }

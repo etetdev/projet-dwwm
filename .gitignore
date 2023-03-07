@@ -41,4 +41,5 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 
-.vercel
+# backup
+*.bak

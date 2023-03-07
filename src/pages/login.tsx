@@ -7,7 +7,10 @@ const Home = () => {
   const supabase = useSupabaseClient();
 
   return (
-    <div className="container" style={{ padding: "50px 0 100px 0" }}>
+    <div
+      className="container min-h-screen bg-gray-900"
+      style={{ padding: "50px 0 100px 0" }}
+    >
       {!session ? (
         <Auth
           providers={["github", "discord"]}
