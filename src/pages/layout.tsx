@@ -1,24 +1,21 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export function Navbar() {
   return (
-    <nav className=" w-full border-b border-gray-200 bg-white px-2 py-2.5 dark:border-gray-600 dark:bg-gray-900 sm:px-4">
+    <nav className=" w-full border-b border-gray-200 bg-white px-2 py-2.5 dark:border-gray-600 dark:bg-[#101010] sm:px-4">
       <div className="container mx-auto flex flex-wrap items-center justify-between">
         <Link href="/" className="flex items-center">
+          <Image src="/logo.png" alt="" width="64" height="64"></Image>
           <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
             RoamR
           </span>
         </Link>
         <div className="flex space-x-2 md:order-4">
           <Link href="/login">
-            <button className="px-5 py-2.5 text-center text-sm font-medium text-black dark:text-white">
-              Connexion
-            </button>
-          </Link>
-          <Link href="/login">
             <button
               type="button"
-              className="mr-3 rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 md:mr-0"
+              className="mr-3 rounded-md bg-blue-700 px-5 py-2.5 text-center text-sm text-white hover:bg-[#18573c] focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-[#3fcf8e] dark:text-black dark:hover:bg-[#34b27b] dark:focus:ring-[#18573c] md:mr-0"
             >
               Rejoindre
             </button>
@@ -30,7 +27,7 @@ export function Navbar() {
             aria-controls="navbar-sticky"
             aria-expanded="false"
           >
-            <span className="sr-only">Open main menu</span>
+            <span className="sr-only">Ouvrir le menu</span>
             <svg
               className="h-6 w-6"
               aria-hidden="true"
@@ -53,9 +50,11 @@ export function Navbar() {
 
 export function Footer() {
   return (
-    <footer className="bg-white p-4 shadow dark:bg-gray-900 md:px-6 md:py-8">
+    <footer className="bg-white p-4 shadow dark:bg-[#101010] md:px-6 md:py-8">
+      <hr className="my-6 border-gray-200 dark:border-gray-700 sm:mx-auto lg:my-8" />
       <div className="sm:flex sm:items-center sm:justify-between">
         <Link href="/" className="mb-4 flex items-center sm:mb-0">
+          <Image src="/logo.png" alt="" width="64" height="64"></Image>
           <span className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">
             RoamR
           </span>
@@ -73,7 +72,7 @@ export function Footer() {
           </li>
         </ul>
       </div>
-      <hr className="my-6 border-gray-200 dark:border-gray-700 sm:mx-auto lg:my-8" />
+
       <span className="block text-sm text-gray-500 dark:text-gray-400 sm:text-center">
         ©
         <Link href="/" className="hover:underline">

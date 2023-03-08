@@ -9,16 +9,17 @@ const Home: NextPage = () => {
     <>
       <Head>
         <title>RoamR</title>
+        <link rel="shortcut icon" href="./favicon.svg" />
       </Head>
       <Navbar></Navbar>
-      <div className="h-[972px] bg-[url('/blob-scene.svg')] bg-scroll">
-        <main className="flex min-h-screen flex-col items-center justify-center bg-white dark:bg-gray-900">
+      <div className="">
+        <main className="flex min-h-screen flex-col items-center justify-center bg-white dark:bg-[#101010]">
           <section className="">
             <div className="mx-auto max-w-screen-xl py-8 px-4 sm:py-16 lg:px-6">
               <div className="max-w-screen-md">
                 <h2 className="mb-4 text-4xl font-extrabold tracking-tight text-gray-900 dark:text-white">
                   RoamR est le réseau social qu&apos;il vous faut pour les
-                  passionners de voyages !
+                  passionner de voyages !
                 </h2>
                 <p className="mb-8 font-light text-gray-500 dark:text-gray-400 sm:text-xl">
                   Lorem, ipsum dolor sit amet consectetur adipisicing elit.
@@ -30,7 +31,7 @@ const Home: NextPage = () => {
                 <div className="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4">
                   <Link
                     href="/login"
-                    className="bg-primary-700 hover:bg-primary-800 focus:ring-primary-300 dark:focus:ring-primary-900 inline-flex items-center justify-center rounded-lg px-4 py-2.5 text-center text-base font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 md:mr-0"
+                    className="bg-primary-700 inline-flex items-center justify-center rounded-md bg-[#3fcf8e] px-4 py-2.5 text-center text-base text-white hover:bg-[#34b27b] focus:outline-none focus:ring-4 focus:ring-blue-300 dark:text-black dark:focus:ring-[#34b27b] md:mr-0"
                   >
                     Rejoindre
                   </Link>
@@ -39,7 +40,7 @@ const Home: NextPage = () => {
             </div>
           </section>
         </main>
-        <section className="flex min-h-screen flex-col items-center justify-center bg-white dark:bg-gray-900">
+        <section className="flex min-h-screen flex-col items-center justify-center bg-white dark:bg-[#101010]">
           <div className="mx-auto max-w-screen-xl px-4 py-8 text-center lg:py-16 lg:px-6">
             <figure className="mx-auto max-w-screen-md">
               <svg
@@ -55,10 +56,37 @@ const Home: NextPage = () => {
               </svg>
               <blockquote>
                 <p className="text-2xl font-medium text-gray-900 dark:text-white">
-                  曖昧3センチ そりゃぷにってコトかい？ ちょっ！
-                  らっぴんぐが制服... だぁぁ不利ってこたない ぷ。 がんばっちゃ
-                  やっちゃちゃ そんときゃーっち release ぎョッ 汗 (Fuu)々 (Fuu)
-                  の谷間に Darling, darling, freeze!
+                  <ruby>
+                    曖昧<rp>(</rp>
+                    <rt>あいまい</rt>
+                    <rp>)</rp>
+                  </ruby>
+                  3センチ そりゃぷにってコトかい？ ちょっ！ らっぴんぐが
+                  <ruby>
+                    制服<rp>(</rp>
+                    <rt>せいふく</rt>
+                    <rp>)</rp>
+                  </ruby>
+                  ... だぁぁ
+                  <ruby>
+                    不利<rp>(</rp>
+                    <rt>ふり</rt>
+                    <rp>)</rp>
+                  </ruby>
+                  ってこたない ぷ。 がんばっちゃ やっちゃちゃ そんときゃーっち
+                  release ぎョッ
+                  <ruby>
+                    汗<rp>(</rp>
+                    <rt>あせ</rt>
+                    <rp>)</rp>
+                  </ruby>
+                  (Fuu) 々 (Fuu) の
+                  <ruby>
+                    谷間<rp>(</rp>
+                    <rt>たにま</rt>
+                    <rp>)</rp>
+                  </ruby>
+                  に Darling, darling, freeze!
                 </p>
               </blockquote>
               <figcaption className="mt-6 flex items-center justify-center space-x-3">

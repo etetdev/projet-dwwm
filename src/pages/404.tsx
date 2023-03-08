@@ -9,7 +9,7 @@ const Error = () => {
         <title>RoamR - 404</title>
       </Head>
       <Navbar></Navbar>
-      <section className="flex min-h-screen flex-col items-center justify-center bg-white dark:bg-gray-900">
+      <section className="flex min-h-screen flex-col items-center justify-center bg-white dark:bg-[#101010]">
         <h1 className="mb-4 text-7xl font-extrabold tracking-tight text-gray-900 dark:text-white lg:text-9xl">
           404
         </h1>

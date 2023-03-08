@@ -8,7 +8,7 @@ const Privacy = () => {
         <title>RoamR - Politique de confidentialité</title>
       </Head>
       <Navbar></Navbar>
-      <section className="mx-auto flex min-h-screen flex-col items-center justify-center space-y-16 bg-white text-black dark:bg-gray-900 dark:text-white">
+      <section className="mx-auto flex min-h-screen flex-col items-center justify-center space-y-16 bg-white text-black dark:bg-[#101010] dark:text-white">
         <h1 className="text-center text-6xl font-bold">
           Politique de confidentialité
         </h1>

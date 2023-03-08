@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+::selection {
+  @apply bg-[#3fcf8e] text-black;
+}
+
 html,
 body {
   --custom-font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
