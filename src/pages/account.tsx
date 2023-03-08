@@ -1,10 +1,13 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { useState, useEffect } from "react";
 import {
   useUser,
   useSupabaseClient,
-  Session,
+  type Session,
 } from "@supabase/auth-helpers-react";
-import { Database } from "../utils/database.types";
+import { type Database } from "utils/database.types";
 type Profiles = Database["public"]["Tables"]["profiles"]["Row"];
 
 export default function Account({ session }: { session: Session }) {
@@ -16,7 +19,7 @@ export default function Account({ session }: { session: Session }) {
   const [avatar_url, setAvatarUrl] = useState<Profiles["avatar_url"]>(null);
 
   useEffect(() => {
-    getProfile();
+    void getProfile();
   }, [session]);
 
   async function getProfile() {
@@ -24,7 +27,7 @@ export default function Account({ session }: { session: Session }) {
       setLoading(true);
       if (!user) throw new Error("No user");
 
-      let { data, error, status } = await supabase
+      const { data, error, status } = await supabase
         .from("profiles")
         .select(`username, website, avatar_url`)
         .eq("id", user.id)
@@ -68,7 +71,7 @@ export default function Account({ session }: { session: Session }) {
         updated_at: new Date().toISOString(),
       };
 
-      let { error } = await supabase.from("profiles").upsert(updates);
+      const { error } = await supabase.from("profiles").upsert(updates);
       if (error) throw error;
       alert("Profile updated!");
     } catch (error) {
@@ -92,15 +95,6 @@ export default function Account({ session }: { session: Session }) {
           type="text"
           value={username || ""}
           onChange={(e) => setUsername(e.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="website">Website</label>
-        <input
-          id="website"
-          type="website"
-          value={website || ""}
-          onChange={(e) => setWebsite(e.target.value)}
         />
       </div>
 

@@ -8,7 +8,7 @@ const Home = () => {
 
   return (
     <div
-      className="container min-h-screen bg-gray-900"
+      className="min-h-screen bg-gray-900 p-16"
       style={{ padding: "50px 0 100px 0" }}
     >
       {!session ? (

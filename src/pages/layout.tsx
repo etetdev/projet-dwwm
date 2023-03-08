@@ -62,11 +62,6 @@ export function Footer() {
         </Link>
         <ul className="mb-6 flex flex-wrap items-center text-sm text-gray-500 dark:text-gray-400 sm:mb-0">
           <li>
-            <Link href="/about" className="mr-4 hover:underline md:mr-6 ">
-              À propos
-            </Link>
-          </li>
-          <li>
             <Link href="/privacy" className="mr-4 hover:underline md:mr-6">
               Politique de confidentialité
             </Link>
