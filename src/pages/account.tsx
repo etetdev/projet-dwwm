@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/no-misused-promises */
+/* eslint-disable @typescript-eslint/no-empty-function */
 /* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { useState, useEffect } from "react";
 import {
   useUser,
@@ -11,111 +10,120 @@ import { type Database } from "utils/database.types";
 type Profiles = Database["public"]["Tables"]["profiles"]["Row"];
 
 export default function Account({ session }: { session: Session }) {
-  const supabase = useSupabaseClient<Database>();
-  const user = useUser();
-  const [loading, setLoading] = useState(true);
-  const [username, setUsername] = useState<Profiles["username"]>(null);
-  const [website, setWebsite] = useState<Profiles["website"]>(null);
-  const [avatar_url, setAvatarUrl] = useState<Profiles["avatar_url"]>(null);
+    const supabase = useSupabaseClient<Database>();
+    const user = useUser();
+    const [loading, setLoading] = useState(true);
+    const [username, setUsername] = useState<Profiles["username"]>(null);
+    const [website, setWebsite] = useState<Profiles["website"]>(null);
+    const [avatar_url, setAvatarUrl] = useState<Profiles["avatar_url"]>(null);
 
-  useEffect(() => {
-    void getProfile();
-  }, [session]);
+    useEffect(() => {
+      void getProfile();
+    }, [session]);
 
-  async function getProfile() {
-    try {
-      setLoading(true);
-      if (!user) throw new Error("No user");
+    async function getProfile() {
+      try {
+        setLoading(true);
+        if (!user) throw new Error("No user");
 
-      const { data, error, status } = await supabase
-        .from("profiles")
-        .select(`username, website, avatar_url`)
-        .eq("id", user.id)
-        .single();
+        const { data, error, status } = await supabase
+          .from("profiles")
+          .select(`username, website, avatar_url`)
+          .eq("id", user.id)
+          .single();
 
-      if (error && status !== 406) {
-        throw error;
+        if (error && status !== 406) {
+          throw error;
+        }
+
+        if (data) {
+          setUsername(data.username);
+          setWebsite(data.website);
+          setAvatarUrl(data.avatar_url);
+        }
+      } catch (error) {
+        alert("Error loading user data!");
+        console.log(error);
+      } finally {
+        setLoading(false);
       }
+    }
 
-      if (data) {
-        setUsername(data.username);
-        setWebsite(data.website);
-        setAvatarUrl(data.avatar_url);
+    async function updateProfile({
+      username,
+      website,
+      avatar_url,
+    }: {
+      username: Profiles["username"];
+      website: Profiles["website"];
+      avatar_url: Profiles["avatar_url"];
+    }) {
+      try {
+        setLoading(true);
+        if (!user) throw new Error("No user");
+
+        const updates = {
+          id: user.id,
+          username,
+          website,
+          avatar_url,
+          updated_at: new Date().toISOString(),
+        };
+
+        const { error } = await supabase.from("profiles").upsert(updates);
+        if (error) throw error;
+        alert("Profile updated!");
+      } catch (error) {
+        alert("Error updating the data!");
+        console.log(error);
+      } finally {
+        setLoading(false);
       }
-    } catch (error) {
-      alert("Error loading user data!");
-      console.log(error);
-    } finally {
-      setLoading(false);
     }
-  }
 
-  async function updateProfile({
-    username,
-    website,
-    avatar_url,
-  }: {
-    username: Profiles["username"];
-    website: Profiles["website"];
-    avatar_url: Profiles["avatar_url"];
-  }) {
-    try {
-      setLoading(true);
-      if (!user) throw new Error("No user");
+    return (
+      <div className="form-widget">
+        <div>
+          <label htmlFor="email">Email</label>
+          <input id="email" type="text" value={session?session.user.email:""} disabled />
+        </div>
+        <div>
+          <label htmlFor="username">Pseudo</label>
+          <input
+            id="username"
+            type="text"
+            value={username || ""}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+        </div>
 
-      const updates = {
-        id: user.id,
-        username,
-        website,
-        avatar_url,
-        updated_at: new Date().toISOString(),
-      };
+        <div>
+          <button
+            className="button primary block"
+            onClick={() => {
+              updateProfile({ username, website, avatar_url })
+                .then(() => {})
+                .catch(() => {});
+            }}
+            disabled={loading}
+          >
+            {loading ? "Loading ..." : "Update"}
+          </button>
+        </div>
 
-      const { error } = await supabase.from("profiles").upsert(updates);
-      if (error) throw error;
-      alert("Profile updated!");
-    } catch (error) {
-      alert("Error updating the data!");
-      console.log(error);
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  return (
-    <div className="form-widget">
-      <div>
-        <label htmlFor="email">Email</label>
-        <input id="email" type="text" value={session.user.email} disabled />
+        <div>
+          <button
+            className="button block"
+            onClick={() => {
+              supabase.auth
+                .signOut()
+                .then(() => {})
+                .catch(() => {});
+            }}
+          >
+            Sign Out
+          </button>
+        </div>
       </div>
-      <div>
-        <label htmlFor="username">Username</label>
-        <input
-          id="username"
-          type="text"
-          value={username || ""}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-      </div>
-
-      <div>
-        <button
-          className="button primary block"
-          onClick={() => updateProfile({ username, website, avatar_url })}
-          disabled={loading}
-        >
-          {loading ? "Loading ..." : "Update"}
-        </button>
-      </div>
-
-      <div>
-        <button
-          className="button block"
-          onClick={() => supabase.auth.signOut()}
-        >
-          Sign Out
-        </button>
-      </div>
-    </div>
-  );
+    );
 }
