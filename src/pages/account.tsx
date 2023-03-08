@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 /* eslint-disable react-hooks/exhaustive-deps */
+import { ThemeSupa } from "@supabase/auth-ui-shared";
 import { useState, useEffect } from "react";
 import {
   useUser,
@@ -7,85 +8,93 @@ import {
   type Session,
 } from "@supabase/auth-helpers-react";
 import { type Database } from "utils/database.types";
+import { Navbar, Footer } from "./layout";
 type Profiles = Database["public"]["Tables"]["profiles"]["Row"];
 
 export default function Account({ session }: { session: Session }) {
-    const supabase = useSupabaseClient<Database>();
-    const user = useUser();
-    const [loading, setLoading] = useState(true);
-    const [username, setUsername] = useState<Profiles["username"]>(null);
-    const [website, setWebsite] = useState<Profiles["website"]>(null);
-    const [avatar_url, setAvatarUrl] = useState<Profiles["avatar_url"]>(null);
+  const supabase = useSupabaseClient<Database>();
+  const user = useUser();
+  const [loading, setLoading] = useState(true);
+  const [username, setUsername] = useState<Profiles["username"]>(null);
+  const [website, setWebsite] = useState<Profiles["website"]>(null);
+  const [avatar_url, setAvatarUrl] = useState<Profiles["avatar_url"]>(null);
 
-    useEffect(() => {
-      void getProfile();
-    }, [session]);
+  useEffect(() => {
+    void getProfile();
+  }, [session]);
 
-    async function getProfile() {
-      try {
-        setLoading(true);
-        if (!user) throw new Error("No user");
+  async function getProfile() {
+    try {
+      setLoading(true);
+      if (!user) throw new Error("No user");
 
-        const { data, error, status } = await supabase
-          .from("profiles")
-          .select(`username, website, avatar_url`)
-          .eq("id", user.id)
-          .single();
+      const { data, error, status } = await supabase
+        .from("profiles")
+        .select(`username, website, avatar_url`)
+        .eq("id", user.id)
+        .single();
 
-        if (error && status !== 406) {
-          throw error;
-        }
-
-        if (data) {
-          setUsername(data.username);
-          setWebsite(data.website);
-          setAvatarUrl(data.avatar_url);
-        }
-      } catch (error) {
-        alert("Error loading user data!");
-        console.log(error);
-      } finally {
-        setLoading(false);
+      if (error && status !== 406) {
+        throw error;
       }
-    }
 
-    async function updateProfile({
-      username,
-      website,
-      avatar_url,
-    }: {
-      username: Profiles["username"];
-      website: Profiles["website"];
-      avatar_url: Profiles["avatar_url"];
-    }) {
-      try {
-        setLoading(true);
-        if (!user) throw new Error("No user");
-
-        const updates = {
-          id: user.id,
-          username,
-          website,
-          avatar_url,
-          updated_at: new Date().toISOString(),
-        };
-
-        const { error } = await supabase.from("profiles").upsert(updates);
-        if (error) throw error;
-        alert("Profile updated!");
-      } catch (error) {
-        alert("Error updating the data!");
-        console.log(error);
-      } finally {
-        setLoading(false);
+      if (data) {
+        setUsername(data.username);
+        setWebsite(data.website);
+        setAvatarUrl(data.avatar_url);
       }
+    } catch (error) {
+      alert("Error loading user data!");
+      console.log(error);
+    } finally {
+      setLoading(false);
     }
+  }
 
-    return (
+  async function updateProfile({
+    username,
+    website,
+    avatar_url,
+  }: {
+    username: Profiles["username"];
+    website: Profiles["website"];
+    avatar_url: Profiles["avatar_url"];
+  }) {
+    try {
+      setLoading(true);
+      if (!user) throw new Error("No user");
+
+      const updates = {
+        id: user.id,
+        username,
+        website,
+        avatar_url,
+        updated_at: new Date().toISOString(),
+      };
+
+      const { error } = await supabase.from("profiles").upsert(updates);
+      if (error) throw error;
+      alert("Profile updated!");
+    } catch (error) {
+      alert("Error updating the data!");
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  return (
+    <div className="min-h-screen">
+      <Navbar></Navbar>
       <div className="form-widget">
         <div>
           <label htmlFor="email">Email</label>
-          <input id="email" type="text" value={session?session.user.email:""} disabled />
+          <input
+            id="email"
+            type="text"
+            value={session ? session.user.email : ""}
+            disabled
+          />
         </div>
         <div>
           <label htmlFor="username">Pseudo</label>
@@ -96,7 +105,6 @@ export default function Account({ session }: { session: Session }) {
             onChange={(e) => setUsername(e.target.value)}
           />
         </div>
-
         <div>
           <button
             className="button primary block"
@@ -107,7 +115,7 @@ export default function Account({ session }: { session: Session }) {
             }}
             disabled={loading}
           >
-            {loading ? "Loading ..." : "Update"}
+            {loading ? "Loading ..." : "Mettre a jour"}
           </button>
         </div>
 
@@ -121,9 +129,11 @@ export default function Account({ session }: { session: Session }) {
                 .catch(() => {});
             }}
           >
-            Sign Out
+            Deconnexion
           </button>
         </div>
       </div>
-    );
+      <Footer></Footer>
+    </div>
+  );
 }

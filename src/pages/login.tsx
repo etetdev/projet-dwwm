@@ -3,6 +3,7 @@ import { ThemeSupa } from "@supabase/auth-ui-shared";
 import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
 import Account from "./account";
 import { Navbar, Footer } from "./layout";
+import Link from "next/link";
 
 const Login = () => {
   const session = useSession();
@@ -23,7 +24,11 @@ const Login = () => {
             theme="dark"
           />
         ) : (
-          <p>Account page will go here.</p>
+          <section className="mx-auto flex min-h-screen flex-col items-center justify-center space-y-16 bg-white text-black dark:bg-[#101010] dark:text-white">
+            <Link href="./account">
+              <h2>Vous pouvez modifier votre compte en cliquant ici</h2>
+            </Link>
+          </section>
         )}
       </div>
       <Footer></Footer>
