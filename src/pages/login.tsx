@@ -27,7 +27,7 @@ const Login = () => {
             theme="dark"
           />
         ) : (
-          <section className="mx-auto flex min-h-screen flex-col items-center justify-center space-y-16 bg-white text-black dark:bg-[#101010] dark:text-white">
+          <section className="mx-auto flex min-h-screen flex-col items-center justify-center space-y-16 bg-[#101010] text-white">
             <Link href="./account">
               <h2>Vous pouvez modifier votre compte en cliquant ici</h2>
             </Link>
