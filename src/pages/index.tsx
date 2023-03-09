@@ -12,9 +12,9 @@ const Home: NextPage = () => {
         <link rel="shortcut icon" href="./favicon.svg" />
       </Head>
       <Navbar></Navbar>
-      <div className="">
+      <div>
         <main className="flex min-h-screen flex-col items-center justify-center bg-[#101010]">
-          <section className="">
+          <section>
             <div className="mx-auto max-w-screen-xl py-8 px-4 sm:py-16 lg:px-6">
               <div className="max-w-screen-md">
                 <h2 className="mb-4 text-4xl font-extrabold tracking-tight text-white">

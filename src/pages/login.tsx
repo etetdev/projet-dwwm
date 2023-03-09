@@ -1,7 +1,6 @@
 import { Auth } from "@supabase/auth-ui-react";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
 import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
-import Account from "./account";
 import { Navbar, Footer } from "./layout";
 import Link from "next/link";
 import Head from "next/head";

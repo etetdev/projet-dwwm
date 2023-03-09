@@ -6,9 +6,6 @@ import {
 } from "@supabase/auth-helpers-react";
 import { type AppProps } from "next/app";
 import "~/styles/globals.css";
-import { Inter } from "next/font/google";
-
-const inter = Inter({ subsets: ["latin"] });
 
 function MyApp({
   Component,
@@ -28,4 +25,3 @@ function MyApp({
   );
 }
 export default MyApp;
-export { inter };

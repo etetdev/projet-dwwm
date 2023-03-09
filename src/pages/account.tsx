@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 /* eslint-disable react-hooks/exhaustive-deps */
-import { ThemeSupa } from "@supabase/auth-ui-shared";
 import { useState, useEffect } from "react";
 import {
   useUser,
