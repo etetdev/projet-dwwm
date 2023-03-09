@@ -4,6 +4,7 @@ import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
 import Account from "./account";
 import { Navbar, Footer } from "./layout";
 import Link from "next/link";
+import Head from "next/head";
 
 const Login = () => {
   const session = useSession();
@@ -11,6 +12,9 @@ const Login = () => {
 
   return (
     <div>
+      <Head>
+        <title>RoamR - Connexion</title>
+      </Head>
       <Navbar></Navbar>
       <div
         className="container min-h-screen"
