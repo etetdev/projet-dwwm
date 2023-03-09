@@ -8,7 +8,7 @@ const CGU = () => {
         <title>RoamR - CGU</title>
       </Head>
       <Navbar></Navbar>
-      <section className="flex min-h-screen flex-col items-center justify-center bg-white text-black dark:bg-[#101010] dark:text-white">
+      <section className="flex min-h-screen flex-col items-center justify-center bg-[#101010] text-white">
         <p className="w-1/2 text-justify leading-8">
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore
           nobis nostrum necessitatibus tempora enim aliquid totam officia eos

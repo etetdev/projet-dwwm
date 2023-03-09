@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export function Navbar() {
   return (
-    <nav className=" w-full border-b border-gray-200 bg-white px-2 py-2.5 dark:border-gray-600 dark:bg-[#101010] sm:px-4">
+    <nav className=" w-full border-b border-gray-600 bg-[#101010] px-2 py-2.5 sm:px-4">
       <div className="container mx-auto flex flex-wrap items-center justify-between">
         <Link href="/" className="flex items-center">
           <Image src="/logo.png" alt="" width="64" height="64"></Image>
@@ -15,7 +15,7 @@ export function Navbar() {
           <Link href="/login">
             <button
               type="button"
-              className="mr-3 rounded-md bg-[#3fcf8e] px-5 py-2.5 text-center text-sm text-white hover:bg-[#34b27b] focus:outline-none focus:ring-4 focus:ring-[#18573c] dark:text-black md:mr-0"
+              className="mr-3 rounded-md bg-[#3fcf8e] px-5 py-2.5 text-center text-black hover:bg-[#34b27b] focus:outline-none focus:ring-4 focus:ring-[#18573c] md:mr-0"
             >
               Rejoindre
             </button>
@@ -50,8 +50,8 @@ export function Navbar() {
 
 export function Footer() {
   return (
-    <footer className="bg-white p-4 shadow dark:bg-[#101010] md:px-6 md:py-8">
-      <hr className="my-6 border-gray-200 dark:border-gray-700 sm:mx-auto lg:my-8" />
+    <footer className="bg-[#101010] p-4 shadow md:px-6 md:py-8">
+      <hr className="my-6 border-gray-700 sm:mx-auto lg:my-8" />
       <div className="sm:flex sm:items-center sm:justify-between">
         <Link href="/" className="mb-4 flex items-center sm:mb-0">
           <Image src="/logo.png" alt="" width="64" height="64"></Image>
