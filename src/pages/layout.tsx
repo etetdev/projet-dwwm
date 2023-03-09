@@ -15,7 +15,7 @@ export function Navbar() {
           <Link href="/login">
             <button
               type="button"
-              className="mr-3 rounded-md px-5 py-2.5 text-center text-sm text-white hover:bg-[#18573c] focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-[#3fcf8e] dark:text-black dark:hover:bg-[#34b27b] dark:focus:ring-[#18573c] md:mr-0"
+              className="mr-3 rounded-md bg-[#3fcf8e] px-5 py-2.5 text-center text-sm text-white hover:bg-[#34b27b] focus:outline-none focus:ring-4 focus:ring-[#18573c] dark:text-black md:mr-0"
             >
               Rejoindre
             </button>
